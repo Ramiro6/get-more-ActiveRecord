@@ -10,10 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_03_12_083510) do
+ActiveRecord::Schema.define(version: 2018_03_12_103014) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "mailing_lists_users", id: false, force: :cascade do |t|
+    t.bigint "mailing_list_id", null: false
+    t.bigint "user_id", null: false
+  end
 
   create_table "products", force: :cascade do |t|
     t.string "name"
@@ -25,9 +30,7 @@ ActiveRecord::Schema.define(version: 2018_03_12_083510) do
     t.datetime "updated_at", null: false
     t.integer "qty_sold"
     t.string "ref_num"
-    t.bigint "style_id"
     t.index ["ref_num"], name: "index_products_on_ref_num"
-    t.index ["style_id"], name: "index_products_on_style_id"
   end
 
 end
