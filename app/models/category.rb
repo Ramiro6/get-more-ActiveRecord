@@ -1,7 +1,9 @@
 class Category < ApplicationRecord
     has_many :products
     before_validation :add_default_prefix, if: 
-                      Proc.new { |category| category.prefix.blank? }
+                    #   Proc.new { |category| category.prefix.blank? }
+                    #   or
+                      proc { |category| category.prefix.blank? }
 
     validates :name, presence: true
     validates :prefix, presence: true
