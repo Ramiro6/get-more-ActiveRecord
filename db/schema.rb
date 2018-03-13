@@ -10,10 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_03_12_103014) do
+ActiveRecord::Schema.define(version: 2018_03_13_074239) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "categories", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "mailing_lists_users", id: false, force: :cascade do |t|
     t.bigint "mailing_list_id", null: false
@@ -30,6 +36,8 @@ ActiveRecord::Schema.define(version: 2018_03_12_103014) do
     t.datetime "updated_at", null: false
     t.integer "qty_sold"
     t.string "ref_num"
+    t.bigint "category_id"
+    t.index ["category_id"], name: "index_products_on_category_id"
     t.index ["ref_num"], name: "index_products_on_ref_num"
   end
 
