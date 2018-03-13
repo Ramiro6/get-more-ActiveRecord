@@ -7,10 +7,9 @@ class Product < ApplicationRecord
 
     scope :recent, lambda { where(["created_at >= ?", 1.year.ago]) }
 
-    # this is in another commid no in this
-    # delegate :prefix, to: :category
+    delegate :prefix, to: :category, allow_nil: true
 
-    # def full_ref_num
-    #     "#{prefix}-#{ref_num}"
-    # end
+    def full_ref_num
+        "#{prefix}-#{ref_num}"
+    end
 end

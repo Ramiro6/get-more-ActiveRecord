@@ -1,7 +1,7 @@
 class Category < ApplicationRecord
     has_many :products
 
-    # def prefix
-    #     'GEN'
-    # end
+    def prefix
+        'GEN'
+    end
 end
