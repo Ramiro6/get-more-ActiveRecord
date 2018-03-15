@@ -11,6 +11,14 @@ class Product < ApplicationRecord
     after_save :ammounce_save
     delegate :prefix, to: :category, allow_nil: true
 
+    def available_online?
+        true
+    end
+
+    def available_in_store?
+        true
+    end
+
     def full_ref_num
         "#{prefix}-#{ref_num}"
     end
