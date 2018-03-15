@@ -1,5 +1,5 @@
 class Product < ApplicationRecord
-    belongs_to :category
+    belongs_to :category, touch: true, counter_cache: true
 
     # default_scope { where.not(price: nil) }
 

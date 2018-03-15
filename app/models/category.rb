@@ -1,5 +1,8 @@
 class Category < ApplicationRecord
-    has_many :products
+    has_many :products, lambda { order(:created_at) },
+              dependent: :destroy
+
+
     before_validation :add_default_prefix, if: 
                     #   Proc.new { |category| category.prefix.blank? }
                     #   or
