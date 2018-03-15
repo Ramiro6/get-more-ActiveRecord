@@ -2,6 +2,9 @@ class Category < ApplicationRecord
     has_many :products, lambda { order(:created_at) },
               dependent: :destroy
 
+    belongs_to :parent, class_name: 'Category'
+    has_many :subcategories, class_name: 'Category', foreign_key: 'parent_id'
+
 
     before_validation :add_default_prefix, if: 
                     #   Proc.new { |category| category.prefix.blank? }
@@ -10,6 +13,8 @@ class Category < ApplicationRecord
 
     validates :name, presence: true
     validates :prefix, presence: true
+
+    scope :routes, lambda { where(parent_id: nil) }
 
 
     # def prefix
